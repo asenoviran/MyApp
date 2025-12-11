@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <!-- Картинка -->
+        <ImageView
+            android:id="@+id/imageBuilding"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:background="#CCC"/>
+        <!-- Название -->
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:text="Название"/>
+        <!-- Страна + стиль -->
+        <TextView
+            android:id="@+id/textInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Франция • Готика"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"/>
+        <!-- Описание -->
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="16sp"
+            android:text="Описание здания..."/>
+        <!-- Рейтинг -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:layout_marginTop="16dp"/>
+        <!-- Комментарий -->
+        <EditText
+            android:id="@+id/editComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ваш комментарий..."
+            android:minHeight="120dp"
+            android:gravity="top"
+            android:layout_marginTop="16dp"/>
+        <!-- Избранное -->
+        <Button
+            android:id="@+id/buttonFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить в избранное"
+            android:layout_marginTop="12dp"/>
+        <!-- Сохранить -->
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>
