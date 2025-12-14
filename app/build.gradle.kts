@@ -41,6 +41,14 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.8.3")
     implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
 
+    // Glide для загрузки изображений
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+    // для загрузки изображения
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

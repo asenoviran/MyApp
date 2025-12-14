@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5E8D8">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
-        <!-- Картинка -->
+
+        <!-- Картинка книги -->
         <ImageView
-            android:id="@+id/imageBuilding"
+            android:id="@+id/imageBook"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:scaleType="centerCrop"
-            android:background="#CCC"/>
-        <!-- Название -->
+            android:background="#D9CBB6" />
+
+        <!-- Название книги -->
         <TextView
-            android:id="@+id/textName"
+            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="#4E342E"
             android:layout_marginTop="12dp"
-            android:text="Название"/>
-        <!-- Страна + стиль -->
+            android:text="Название книги" />
+
+        <!-- Автор + Жанр -->
         <TextView
             android:id="@+id/textInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Франция • Готика"
+            android:text="Автор • Жанр"
             android:layout_marginTop="8dp"
-            android:textSize="16sp"/>
+            android:textColor="#8B5E3C"
+            android:textSize="16sp" />
+
         <!-- Описание -->
         <TextView
             android:id="@+id/textDescription"
@@ -38,7 +46,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:textSize="16sp"
-            android:text="Описание здания..."/>
+            android:textColor="#3E2723"
+            android:lineSpacingExtra="4dp"
+            android:text="Описание книги..." />
+
         <!-- Рейтинг -->
         <RatingBar
             android:id="@+id/ratingBar"
@@ -46,7 +57,8 @@
             android:layout_height="wrap_content"
             android:numStars="5"
             android:stepSize="0.5"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
+
         <!-- Комментарий -->
         <EditText
             android:id="@+id/editComment"
@@ -55,20 +67,30 @@
             android:hint="Ваш комментарий..."
             android:minHeight="120dp"
             android:gravity="top"
-            android:layout_marginTop="16dp"/>
-        <!-- Избранное -->
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:padding="12dp" />
+
+        <!-- Кнопка 'Избранное' -->
         <Button
             android:id="@+id/buttonFavorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Добавить в избранное"
-            android:layout_marginTop="12dp"/>
-        <!-- Сохранить -->
+            android:textColor="@android:color/white"
+            android:backgroundTint="#8B5E3C"
+            android:layout_marginTop="12dp" />
+
+        <!-- Кнопка 'Сохранить' -->
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Сохранить"
-            android:layout_marginTop="12dp"/>
+            android:textColor="@android:color/white"
+            android:backgroundTint="#6D4C41"
+            android:layout_marginTop="12dp" />
+
     </LinearLayout>
 </ScrollView>
+

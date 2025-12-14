@@ -16,6 +16,8 @@ public class Book implements Serializable {
     public int year;          // год издания
     public String country;    // страна
     public String region;     // регион
+
+    public String imageUrl;   // изображение
     public String description;// описание
 
     // Локальные данные пользователя

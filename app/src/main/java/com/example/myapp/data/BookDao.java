@@ -48,4 +48,8 @@ public interface BookDao {
     // Изменить статус избранного
     @Query("UPDATE books SET isFavorite = :fav WHERE id = :id")
     void setFavorite(int id, boolean fav);
+
+    // Синхронное получение всех зданий (для use-case "обновить, сохранив локальные поля")
+    @Query("SELECT * FROM books")
+    List<Book> getAllSync();
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="2dp"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
     android:padding="8dp"
@@ -15,6 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Изображение книги -->
+        <ImageView
+            android:id="@+id/imageBook"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="12dp"
+            android:background="#DDD"/>
+
         <!-- Название книги -->
         <TextView
             android:id="@+id/textTitle"
@@ -22,7 +32,8 @@
             android:layout_height="wrap_content"
             android:text="Название"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_toEndOf="@id/imageBook"/>
 
         <!-- Автор -->
         <TextView
@@ -31,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Автор"
             android:layout_below="@id/textTitle"
+            android:layout_toEndOf="@id/imageBook"
             android:layout_marginTop="4dp"/>
 
         <!-- Жанр -->
@@ -40,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Жанр"
             android:layout_below="@id/textAuthor"
+            android:layout_toEndOf="@id/imageBook"
             android:layout_marginTop="4dp"/>
 
         <!-- Кнопка избранного -->
@@ -53,3 +66,5 @@
             android:src="@android:drawable/btn_star_big_off"/>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
+
+
