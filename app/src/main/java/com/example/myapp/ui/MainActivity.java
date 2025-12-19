@@ -22,11 +22,11 @@ import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Comparator;
-import java.util.Collections;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -72,17 +72,40 @@ public class MainActivity extends AppCompatActivity {
         adapter = new BooksAdapter();
         recyclerView.setAdapter(adapter);
 
+        // Клик по элементу
         adapter.setOnItemClickListener((book, imageView) -> {
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
             intent.putExtra("book", book);
             startActivity(intent);
         });
 
+        // Клик по избранному
         adapter.setOnFavoriteClickListener(book -> {
             boolean newValue = !book.isFavorite;
             viewModel.setFavorite(book.id, newValue);
             book.isFavorite = newValue;
             applyFiltersAndSort();
+        });
+
+        // --- Обработчик кнопки "+" ---
+        ImageView add = findViewById(R.id.imgAddBook);
+        add.setOnClickListener(v -> {
+            startActivity(new Intent(this, AddBookActivity.class));
+        });
+
+
+        // Долгий клик для удаления книги
+        adapter.setOnItemLongClickListener(book -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Удалить книгу")
+                    .setMessage("Вы уверены, что хотите удалить эту книгу?")
+                    .setPositiveButton("Да", (dialog, which) -> {
+                        viewModel.deleteBook(book);
+                        fullList.remove(book); // удаляем из локального списка
+                        applyFiltersAndSort();
+                    })
+                    .setNegativeButton("Нет", null)
+                    .show();
         });
 
         // ---------- ChipGroup ----------
@@ -260,34 +283,23 @@ public class MainActivity extends AppCompatActivity {
 
         switch (sortMode) {
             case TITLE:
-                Collections.sort(currentList, new Comparator<Book>() {
-                    @Override
-                    public int compare(Book o1, Book o2) {
-                        return safeString(o1.title).compareToIgnoreCase(safeString(o2.title));
-                    }
-                });
+                Collections.sort(currentList, (o1, o2) ->
+                        safeString(o1.title).compareToIgnoreCase(safeString(o2.title)));
                 break;
             case RATING:
-                Collections.sort(currentList, new Comparator<Book>() {
-                    @Override
-                    public int compare(Book o1, Book o2) {
-                        return Float.compare(o2.rating, o1.rating);
-                    }
-                });
+                Collections.sort(currentList, (o1, o2) ->
+                        Float.compare(o2.rating, o1.rating));
                 break;
             case GENRE:
-                Collections.sort(currentList, new Comparator<Book>() {
-                    @Override
-                    public int compare(Book o1, Book o2) {
-                        return safeString(o1.genre).compareToIgnoreCase(safeString(o2.genre));
-                    }
-                });
+                Collections.sort(currentList, (o1, o2) ->
+                        safeString(o1.genre).compareToIgnoreCase(safeString(o2.genre)));
                 break;
         }
 
-
         adapter.setItems(currentList);
     }
+
+
 
     private String safeString(String s) {
         return s == null ? "" : s;

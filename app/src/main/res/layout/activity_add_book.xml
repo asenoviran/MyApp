@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF3E0"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить книгу"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#6B4226"
+            android:layout_gravity="center"
+            android:paddingBottom="24dp"/>
+
+        <!-- Поля ввода с карточным стилем -->
+        <EditText
+            android:id="@+id/title"
+            android:hint="Название книги"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/Author"
+            android:hint="Автор"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/Genre"
+            android:hint="Жанр"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/Year"
+            android:hint="Год издания"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/Region"
+            android:hint="Регион"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/ImageUrl"
+            android:hint="URL изображения"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+        <EditText
+            android:id="@+id/Description"
+            android:hint="Описание"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_card"
+            android:textColor="#333333"/>
+
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#6D4C41"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:drawablePadding="8dp"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+</ScrollView>

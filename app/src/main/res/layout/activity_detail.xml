@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/imageBook"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="centerCrop"
-            android:background="#D9CBB6" />
+            android:layout_height="600dp"
+            android:background="#D9CBB6"
+            android:scaleType="centerCrop" />
 
         <!-- Название книги -->
         <TextView
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ваш комментарий..."
-            android:minHeight="120dp"
+            android:minHeight="100dp"
             android:gravity="top"
             android:layout_marginTop="16dp"
             android:background="#FFFFFF"
@@ -90,6 +90,19 @@
             android:textColor="@android:color/white"
             android:backgroundTint="#6D4C41"
             android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Удалить книгу"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#6D4C41"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center" />
+
+
 
     </LinearLayout>
 </ScrollView>

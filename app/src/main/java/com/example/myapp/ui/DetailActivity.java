@@ -1,5 +1,6 @@
 package com.example.myapp.ui;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(BookListViewModel.class);
 
         // --- UI ЭЛЕМЕНТЫ ---
-        ImageView img = findViewById(R.id.imageBook);      // ← ДОБАВИЛ
+        ImageView img = findViewById(R.id.imageBook);
         TextView name = findViewById(R.id.textTitle);
         TextView info = findViewById(R.id.textInfo);
         TextView desc = findViewById(R.id.textDescription);
@@ -33,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         EditText comment = findViewById(R.id.editComment);
         Button fav = findViewById(R.id.buttonFavorite);
         Button save = findViewById(R.id.buttonSave);
+        Button delete = findViewById(R.id.buttonDelete); // кнопка удаления
 
         // ПОКАЗЫВАЕМ ДАННЫЕ
         name.setText(book.title);
@@ -44,7 +46,6 @@ public class DetailActivity extends AppCompatActivity {
         updateFavButton(fav);
 
         // --- ЗАГРУЗКА ИЗОБРАЖЕНИЯ ---
-        // ЧИСТИМ URL
         String url = book.imageUrl;
         if (url != null) url = url.trim();
 
@@ -68,6 +69,19 @@ public class DetailActivity extends AppCompatActivity {
             book.comment = comment.getText().toString();
             viewModel.update(book);
             finish();
+        });
+
+        // --- Кнопка "Удалить" ---
+        delete.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Удаление книги")
+                    .setMessage("Вы точно хотите удалить эту книгу?")
+                    .setPositiveButton("Да", (dialog, which) -> {
+                        viewModel.deleteBook(book); // удаляем через ViewModel
+                        finish(); // закрываем экран
+                    })
+                    .setNegativeButton("Отмена", null)
+                    .show();
         });
     }
 

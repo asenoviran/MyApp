@@ -8,19 +8,16 @@ import java.util.List;
 @Dao
 public interface BookDao {
 
-    // Получить все книги, сортировка по названию
+    // --- Чтение ---
     @Query("SELECT * FROM books ORDER BY title ASC")
     LiveData<List<Book>> getAll();
 
-    // Избранное
     @Query("SELECT * FROM books WHERE isFavorite = 1 ORDER BY title ASC")
     LiveData<List<Book>> getFavorites();
 
-    // Поиск по названию книги
     @Query("SELECT * FROM books WHERE title LIKE '%' || :query || '%'")
     LiveData<List<Book>> searchByTitle(String query);
 
-    // Фильтры по жанру, автору и региону
     @Query("SELECT * FROM books WHERE genre = :genre")
     LiveData<List<Book>> filterByGenre(String genre);
 
@@ -30,26 +27,32 @@ public interface BookDao {
     @Query("SELECT * FROM books WHERE region = :region")
     LiveData<List<Book>> filterByRegion(String region);
 
-    // Сортировки
     @Query("SELECT * FROM books ORDER BY year ASC")
     LiveData<List<Book>> sortByYear();
 
     @Query("SELECT * FROM books ORDER BY region ASC")
     LiveData<List<Book>> sortByRegion();
 
-    // Вставка данных (из API)
+    // --- Вставка / обновление ---
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Book> books);
 
-    // Обновление записи
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(Book book);
+
+
     @Update
     void update(Book book);
 
-    // Изменить статус избранного
     @Query("UPDATE books SET isFavorite = :fav WHERE id = :id")
     void setFavorite(int id, boolean fav);
 
-    // Синхронное получение всех зданий (для use-case "обновить, сохранив локальные поля")
+    // --- Удаление ---
+    @Delete
+    void delete(Book book);
+
+    // --- Синхронное получение всех книг ---
     @Query("SELECT * FROM books")
     List<Book> getAllSync();
 }
+
