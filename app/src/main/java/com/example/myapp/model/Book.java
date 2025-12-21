@@ -26,4 +26,5 @@ public class Book implements Serializable {
     public String comment;
     @ColumnInfo(defaultValue = "0")
     public float rating;
+
 }

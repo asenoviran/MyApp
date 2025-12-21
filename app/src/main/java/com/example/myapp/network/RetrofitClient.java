@@ -11,7 +11,7 @@ public class RetrofitClient {
     private static Retrofit retrofit;
     public static Retrofit get() {
         if (retrofit == null) {
-// Интерсептор, чтобы смотреть запросы/ответы (очень полезно!)
+// Интерсептор, чтобы смотреть запросы/ответы
             HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
             logger.setLevel(HttpLoggingInterceptor.Level.BODY);
 // Клиент OkHttp

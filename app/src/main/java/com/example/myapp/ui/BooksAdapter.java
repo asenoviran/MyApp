@@ -10,49 +10,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.*;
 
+// Адаптер для RecyclerView: отображает список книг, поддерживает клики на элемент, избранное и долгий клик для удаления
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.Holder> {
 
-    private List<Book> items = new ArrayList<>();
+    private List<Book> items = new ArrayList<>(); // список книг
 
-    // --- Интерфейсы для кликов ---
-    public interface OnItemClickListener {
-        void onItemClick(Book book, ImageView img);
-    }
-
-    public interface OnFavoriteClickListener {
-        void onFavoriteClick(Book book);
-    }
-
-    public interface OnItemLongClickListener {
-        void onItemLongClick(Book book);
-    }
+    // --- Интерфейсы для обработки кликов ---
+    public interface OnItemClickListener { void onItemClick(Book book, ImageView img); } // обычный клик
+    public interface OnFavoriteClickListener { void onFavoriteClick(Book book); } // клик на избранное
+    public interface OnItemLongClickListener { void onItemLongClick(Book book); } // долгий клик
 
     private OnItemClickListener clickListener;
     private OnFavoriteClickListener favListener;
     private OnItemLongClickListener longClickListener;
 
-    // --- Установка списка книг ---
+    // --- Установка списка книг и обновление RecyclerView ---
     public void setItems(List<Book> list) {
         this.items = list;
         notifyDataSetChanged();
     }
 
-    // --- Слушатели ---
-    public void setOnItemClickListener(OnItemClickListener l) {
-        clickListener = l;
-    }
-
-    public void setOnFavoriteClickListener(OnFavoriteClickListener l) {
-        favListener = l;
-    }
-
-    public void setOnItemLongClickListener(OnItemLongClickListener l) {
-        longClickListener = l;
-    }
+    // --- Установка слушателей кликов ---
+    public void setOnItemClickListener(OnItemClickListener l) { clickListener = l; }
+    public void setOnFavoriteClickListener(OnFavoriteClickListener l) { favListener = l; }
+    public void setOnItemLongClickListener(OnItemLongClickListener l) { longClickListener = l; }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Создание ViewHolder для каждой карточки книги
         return new Holder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_book, parent, false));
     }
@@ -61,40 +47,38 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.Holder> {
     public void onBindViewHolder(@NonNull Holder h, int pos) {
         Book book = items.get(pos);
 
-        // --- Заполняем данные ---
+        // --- Заполнение данных ---
         h.textTitle.setText(book.title);
         h.textAuthor.setText(book.author);
         h.textGenre.setText(book.genre);
 
-        String url = book.imageUrl;
-        if (url != null) url = url.trim();
+        String url = book.imageUrl != null ? book.imageUrl.trim() : null;
 
-        Glide.with(h.itemView.getContext())
+        Glide.with(h.itemView.getContext()) // загрузка изображения
                 .load(url)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.error)
                 .centerCrop()
                 .into(h.image);
 
-        // --- Состояние избранного ---
+        // --- Отображение состояния избранного ---
         h.favorite.setImageResource(
                 book.isFavorite
                         ? android.R.drawable.btn_star_big_on
                         : android.R.drawable.btn_star_big_off
         );
 
-        // --- Анимация появления ---
+        // --- Анимация появления карточки ---
         h.itemView.setAlpha(0f);
         h.itemView.setTranslationY(40);
         h.itemView.animate().alpha(1f).translationY(0).setDuration(200).start();
 
-        // --- Клик на карточку ---
+        // --- Обработка клика по карточке ---
         h.itemView.setOnClickListener(v -> {
-            if (clickListener != null)
-                clickListener.onItemClick(book, h.image);
+            if (clickListener != null) clickListener.onItemClick(book, h.image);
         });
 
-        // --- Долгий клик на карточку (удаление) ---
+        // --- Обработка долгого клика по карточке (удаление) ---
         h.itemView.setOnLongClickListener(v -> {
             if (longClickListener != null) {
                 longClickListener.onItemLongClick(book);
@@ -103,19 +87,18 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.Holder> {
             return false;
         });
 
-        // --- Клик по кнопке избранного ---
+        // --- Обработка клика по кнопке избранного ---
         h.favorite.setOnClickListener(v -> {
-            if (favListener != null)
-                favListener.onFavoriteClick(book);
+            if (favListener != null) favListener.onFavoriteClick(book);
         });
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items.size(); // количество элементов в списке
     }
 
-    // --- ViewHolder ---
+    // --- ViewHolder: хранит ссылки на элементы UI одной карточки ---
     static class Holder extends RecyclerView.ViewHolder {
         ImageView image, favorite;
         TextView textTitle, textAuthor, textGenre;
@@ -130,4 +113,3 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.Holder> {
         }
     }
 }
-
