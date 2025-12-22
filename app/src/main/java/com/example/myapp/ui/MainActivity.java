@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;        // RecyclerView для отображения книг
     private BooksAdapter adapter;             // Адаптер для RecyclerView
-    private ChipGroup chipGroupStyles;        // ChipGroup для фильтра по жанрам
+    private ChipGroup    chipGroupStyles;        // ChipGroup для фильтра по жанрам
     private BookListViewModel viewModel;      // ViewModel для работы с данными
 
     private final List<Book> fullList = new ArrayList<>();     // Полный список книг из БД
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         // --- Кнопка "+" для добавления книги ---
         ImageView add = findViewById(R.id.imgAddBook);
         add.setOnClickListener(v -> startActivity(new Intent(this, AddBookActivity.class)));
-        // Переход на экран добавления новой книги
+
 
         // --- Долгий клик для удаления книги ---
         adapter.setOnItemLongClickListener(book -> {

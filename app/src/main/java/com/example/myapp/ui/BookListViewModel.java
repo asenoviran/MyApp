@@ -50,8 +50,6 @@ public class BookListViewModel extends AndroidViewModel {
         return repo.search(q);
     }
 
-    // --- UPDATE (обновление данных) ---
-
     // Установка или снятие флага "избранное" для книги по id
     public void setFavorite(int id, boolean fav) {
         repo.setFavorite(id, fav);
